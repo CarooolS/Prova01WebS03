@@ -4,6 +4,8 @@ import './index.css';
 class App extends React.Component{
     constructor(props){
         super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeResul = this.handleChangeResul.bind(this);
         this.state = {
             nu1: null,
             nu2: null,
@@ -11,17 +13,13 @@ class App extends React.Component{
             resultado: null
 
         };
-        this.handleChangeNu1 = this.handleChangeNu1.bind(this);
-        this.handleChangeNu2 = this.handleChangeNu2.bind(this);
-        this.handleChangeResul = this.handleChangeResul.bind(this);
     }
 
-    handleChangeNu1 = (event) =>{
-        this.setState({nu1: event.target.value});
-    }
+    handleChange = (event) =>{
+        const value = event.target.value;
+        const name = event.target.name;
 
-    handleChangeNu2 = (event) =>{
-        this.setState({nu2: event.target.value});
+        this.setState({[name]: value});
     }
 
     handleChangeResul = (event) =>{
@@ -31,15 +29,15 @@ class App extends React.Component{
         }
 
         else if(event.target.value === 'subtracao'){
-            valor = parseInt(this.state.nu1) - parseInt(this.state.nu2);
+            valor = this.state.nu1 - this.state.nu2;
         }
 
         else if(event.target.value === 'divisao'){
-            valor = parseInt(this.state.nu1) / parseInt(this.state.nu2);
+            valor = this.state.nu1 / this.state.nu2;
         }
 
         else if(event.target.value === 'multiplicacao'){
-            valor = parseInt(this.state.nu1) * parseInt(this.state.nu2);
+            valor = this.state.nu1 * this.state.nu2;
         }
         else{
             valor = '';
@@ -54,17 +52,17 @@ class App extends React.Component{
                 <nav>
                     <div id="div1">
                         <label for="nu1">Número 1: </label>
-                        <input type="number" name="nu1" value={this.state.nu1} onChange={this.handleChangeNu1}/>
+                        <input type="number" name="nu1" value={this.state.nu1} onChange={this.handleChange}/>
                     </div>
 
                     <div id="div2">
                         <label for="nu2">Número 2: </label>
-                        <input type="number" name="nu2" value={this.state.nu2} onChange={this.handleChangeNu2}/>
+                        <input type="number" name="nu2" value={this.state.nu2} onChange={this.handleChange}/>
                     </div>
 
                     <div id="div3">
                         <label for="operacao">Escolha a operação desejada: </label>
-                        <select name="operacao" onChange={this.handleChangeResul}>
+                        <select name="operacao" value={this.state.operacao} onChange={this.handleChangeResul}>
                             <option value="selecione">Selecione</option>
                             <option value="adicao">Adição</option>
                             <option value="subtracao">Subtração</option>
