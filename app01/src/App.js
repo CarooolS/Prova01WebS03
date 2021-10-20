@@ -62,7 +62,7 @@ class App extends React.Component{
 
                     <div id="div3">
                         <label for="operacao">Escolha a operação desejada: </label>
-                        <select name="operacao" value={this.state.operacao} onChange={this.handleChangeResul}>
+                        <select name="operacao"  onChange={this.handleChangeResul}>
                             <option value="selecione">Selecione</option>
                             <option value="adicao">Adição</option>
                             <option value="subtracao">Subtração</option>
